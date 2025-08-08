@@ -1,0 +1,29 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description" : "Creating the Glue job for the e-commerce data",
+    "Resources": {
+        "EcomGlueJob": {
+            "Type": "AWS::Glue::Job",
+            "Properties":{
+                "Name": "e-commerce-glue-job",
+                "Role" : "arn:aws:iam::466414787742:role/GluePOCETLRole",
+                "Command" : {
+                    "Name": "glueetl",
+                    "ScriptLocation": "s3://glue-script-bucket-28/glue_scripts/glue_job.py",
+                    "PythonVersion": "3"
+                },
+                "GlueVersion": "3.0",
+                "DefaultArguments": {
+                        "--TempDir" : "s3://temp-bucket-28/glue_temp/",
+                        "--job-language" : "python",
+                        "--enable-continuos-cloudwatch-log": "true"
+                },
+                "MaxRetries": 1,
+                "Timeout" : 10,
+                "NumberOfWorkers": 2,
+                "WorkerType": "G.1X"
+            }
+        } 
+
+    }
+}

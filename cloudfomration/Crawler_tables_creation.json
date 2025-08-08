@@ -1,0 +1,27 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Create the Appliances crawler and Glue database",
+  "Resources": {
+   
+    "AppliancesCrawler": {
+      "Type": "AWS::Glue::Crawler",
+      "Properties": {
+        "Name": "ecom",
+        "Role": "arn:aws:iam::466414787742:role/GluePOCETLRole",
+        "DatabaseName": "poc-etl-db",
+        "TablePrefix": "ecom_",
+        "Targets": {
+          "S3Targets": [
+            {
+              "Path": "s3://glue-crawler-bucket-28/Appliances/"
+            }
+          ]
+        },
+        "SchemaChangePolicy": {
+          "UpdateBehavior": "UPDATE_IN_DATABASE",
+          "DeleteBehavior": "DEPRECATE_IN_DATABASE"
+        }
+      }
+    }
+  }
+}

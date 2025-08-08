@@ -1,0 +1,39 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Creating the Glue IAM Role",
+    "Resources":{
+        "GluePOCETLRole":{
+        "Type": "AWS::IAM::Role",
+        "Properties":{
+            "RoleName": "GluePOCETLRole",
+            "AssumeRolePolicyDocument":{
+                "Version" : "2012-10-17",
+                "Statement": [{
+                    "Effect": "Allow",
+                    "Principal":{
+                        "Service": "glue.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+            },
+            "ManagedPolicyArns":[
+                "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
+                "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+            ]
+        }
+    }
+},
+    "Outputs":{
+        "RoleName": {
+            "Description": "Creating the Glue IAM Role",
+            "Value":{
+                "Ref":"GluePOCETLRole"
+            }
+        }
+    }
+}
+
+
+
+       

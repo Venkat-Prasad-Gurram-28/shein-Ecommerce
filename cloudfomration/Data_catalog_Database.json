@@ -1,0 +1,17 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Creating the Glue Catalog Data Base",
+    "Resources":{
+        "CatalogDB":{
+        "Type": "AWS::Glue::Database",
+        "Properties":{
+            "CatalogId": {
+                "Ref": "AWS::AccountId"
+            },
+            "DatabaseInput":{
+                "Name": "poc-etl-db"
+            }
+        }
+    }
+}
+}

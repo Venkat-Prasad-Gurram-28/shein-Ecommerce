@@ -1,0 +1,132 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Creating the Glue POC S3-Buckets",
+    "Resources":{
+        "InputS3Bucket" : {
+            "Type": "AWS::S3::Bucket",
+            "Properties":{
+                "BucketName": "glue-source-files-28",
+                "VersioningConfiguration":{
+                    "Status": "Suspended"
+                },
+                "BucketEncryption":{
+                    "ServerSideEncryptionConfiguration":[
+                        {
+                            "ServerSideEncryptionByDefault":{
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        
+        "GlueCrawlerBucket" : {
+            "Type": "AWS::S3::Bucket",
+            "Properties":{
+                "BucketName": "glue-crawler-bucket-28",
+                "VersioningConfiguration":{
+                    "Status": "Suspended"
+                },
+                "BucketEncryption":{
+                    "ServerSideEncryptionConfiguration":[
+                        {
+                            "ServerSideEncryptionByDefault":{
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+    
+        "GlueOutputBucket" : {
+            "Type": "AWS::S3::Bucket",
+            "Properties":{
+                "BucketName": "glue-output-bucket-28",
+                "VersioningConfiguration":{
+                    "Status": "Suspended"
+                },
+                "BucketEncryption":{
+                    "ServerSideEncryptionConfiguration":[
+                        {
+                            "ServerSideEncryptionByDefault":{
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "GlueScriptsBucket" : {
+            "Type": "AWS::S3::Bucket",
+            "Properties":{
+                "BucketName": "glue-script-bucket-28",
+                "VersioningConfiguration":{
+                    "Status": "Suspended"
+                },
+                "BucketEncryption":{
+                    "ServerSideEncryptionConfiguration":[
+                        {
+                            "ServerSideEncryptionByDefault":{
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "TempBucket" : {
+            "Type": "AWS::S3::Bucket",
+            "Properties":{
+                "BucketName": "temp-bucket-28",
+                "VersioningConfiguration":{
+                    "Status": "Suspended"
+                },
+                "BucketEncryption":{
+                    "ServerSideEncryptionConfiguration":[
+                        {
+                            "ServerSideEncryptionByDefault":{
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Outputs":{
+        "InputS3Bucket":{
+            "Description": "Creating the Glue Source Bucket",
+            "Value":{
+                "Ref": "InputS3Bucket"
+            }
+        },
+        "GlueCrawlerBucket":{
+            "Description": "Creating the Glue Crawler Bucket",
+            "Value" : {
+                "Ref": "GlueCrawlerBucket"
+            }
+        },
+        "GlueOutputBucket" :{
+            "Description": "Creating the S3 Output Bucket",
+            "Value" : {
+                "Ref": "GlueOutputBucket"
+        }
+        },
+        "GlueScriptsBucket" : {
+            "Description" : "Creating the Scripts Bucket",
+            "Value":{
+                "Ref": "GlueScriptsBucket"
+            }
+        },
+        "TempBucket" : {
+            "Description": "Creating the Tem data Bucket",
+            "Value": {
+                "Ref": "TempBucket"
+            }
+        }
+        
+
+    }
+}
